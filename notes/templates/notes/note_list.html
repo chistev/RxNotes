@@ -1,0 +1,10 @@
+{% for note in notes %}
+<a href="{% url 'note_detail_view' note.title %}?query={{ request.GET.query }}" class="text-decoration-none text-dark">
+    <div class="note-card">
+        <h5>{{ note.content|safe|slice:":100" }}...</h5>
+        <small class="text-muted">{{ note.updated_at|date:"h:i A, F d, Y" }}</small>  <!-- Changed to updated_at -->
+    </div>
+</a>
+{% empty %}
+<p>No notes found.</p>
+{% endfor %}

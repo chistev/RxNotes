@@ -1,74 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <title>Notes</title>
-    <style>
-        .note-card {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            background-color: #f8f9fa;
-        }
-        .add-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #28a745;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 30px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Notes</h2>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search notes">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-        </div>
+{% extends "notes/base.html" %}
 
-        <!-- Notes List (placeholders) -->
-        <div class="note-card">
-            <h5>Elfsborg 5:45</h5>
-            <small class="text-muted">05:04 PM</small>
-        </div>
-        <div class="note-card">
-            <h5>Levofloxacin, sold under the brand name...</h5>
-            <small class="text-muted">12:01 PM</small>
-        </div>
-        <div class="note-card">
-            <h5>Tinidazole, sold under the brand name Ti...</h5>
-            <small class="text-muted">10:50 AM</small>
-        </div>
-        <div class="note-card">
-            <h5>17th - 20th</h5>
-            <small class="text-muted">08:56 AM, September 23, 2024</small>
-        </div>
-        <div class="note-card">
-            <h5>9th - 13th</h5>
-            <small class="text-muted">08:55 AM, September 23, 2024</small>
-        </div>
-        <div class="note-card">
-            <h5>38</h5>
-            <small class="text-muted">08:37 AM, September 23, 2024</small>
-        </div>
+{% block content %}
 
-        <!-- Floating Add Button -->
-        <a href="#" class="add-btn">
-            <i class="bi bi-plus-lg"></i>
-        </a>
-    </div>
+<h2>RxNotes</h2>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search notes" hx-get="{% url 'search_notes' %}"
+        hx-trigger="keyup changed delay:500ms" hx-target="#notes-list" hx-include="[name='query']" name="query">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+</div>
+
+<!-- Notes List -->
+<div id="notes-list">
+    {% include 'notes/note_list.html' %}
+</div>
+
+{% endblock %}

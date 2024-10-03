@@ -1,0 +1,45 @@
+{% extends "notes/base.html" %}
+
+{% load custom_filters %}
+
+{% block title %}RxNotes | {{ note.title }}{% endblock %}
+    
+{% block content %}
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'notes_view' %}" class="icon-btn fs-3">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <h4>RxNotes</h4>
+            <div class="d-flex align-items-center">
+                <!-- Share dropdown -->
+                <div class="dropdown">
+                    <i class="bi bi-share icon-btn fs-3" id="shareDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu" aria-labelledby="shareDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#" id="copyNote">
+                                <i class="bi bi-clipboard"></i> Copy Note
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" id="copyLink">
+                                <i class="bi bi-link"></i> Copy Link
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" id="shareWhatsApp">
+                                <i class="bi bi-whatsapp"></i> Share on WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="note-details">
+            <p class="note-timestamp">{{ note.updated_at|date:"h:i A, F d, Y" }}</p>
+            <h5 class="note-title">{{ note.title }}</h5>
+            <p class="note-content" id="noteContent">{{ note.content|highlight:query|safe }}</p>
+        </div>
+    </div>
+{% endblock %}

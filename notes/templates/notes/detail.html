@@ -37,7 +37,13 @@
         </div>
 
         <div class="note-details">
-            <p class="note-timestamp">{{ note.updated_at|date:"h:i A, F d, Y" }}</p>
+            <p class="note-timestamp">
+                {% if note.updated_at %}
+                {{ note.updated_at|date:"h:i A, F d, Y" }}
+            {% else %}
+                {{ note.created_at|date:"h:i A, F d, Y" }}
+            {% endif %}
+            </p>
             <h5 class="note-title">{{ note.title }}</h5>
             <p class="note-content" id="noteContent">{{ note.content|highlight:query|safe }}</p>
         </div>

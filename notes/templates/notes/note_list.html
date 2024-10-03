@@ -2,7 +2,13 @@
 <a href="{% url 'note_detail_view' note.title %}?query={{ request.GET.query }}" class="text-decoration-none text-dark">
     <div class="note-card">
         <h5>{{ note.content|safe|slice:":100" }}...</h5>
-        <small class="text-muted">{{ note.updated_at|date:"h:i A, F d, Y" }}</small>  <!-- Changed to updated_at -->
+        <small class="text-muted">
+            {% if note.updated_at %}
+                {{ note.updated_at|date:"h:i A, F d, Y" }}
+            {% else %}
+                {{ note.created_at|date:"h:i A, F d, Y" }}
+            {% endif %}
+        </small>
     </div>
 </a>
 {% empty %}

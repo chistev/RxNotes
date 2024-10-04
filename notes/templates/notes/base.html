@@ -15,27 +15,6 @@
     integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
     crossorigin="anonymous"></script>
     <title>{% block title %}RxNotes{% endblock %}</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        .content {
-            min-height: calc(100vh - 100px); /* Adjust this value based on footer height */
-            padding-bottom: 50px; /* Space for footer */
-        }
-
-        footer {
-    background-color: #f8f9fa;
-    padding: 15px;
-    text-align: center;
-    position: relative; /* or you can use 'fixed' but with padding adjustments */
-    bottom: 0;
-    width: 100%;
-}
-
-    </style>
 </head>
 <body>
     <div class="content container mt-5">

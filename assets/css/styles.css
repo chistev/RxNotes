@@ -11,8 +11,28 @@
     background-color: #e9ecef;
 }
 
-body {
+html, body {
     font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1; 
+    overflow-y: auto; 
+    padding-bottom: 50px; 
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .note-details {

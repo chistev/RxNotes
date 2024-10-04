@@ -61,6 +61,23 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const footer = document.querySelector('footer');
+        const content = document.querySelector('.content');
+
+        function adjustContentPadding() {
+            const footerHeight = footer.offsetHeight;
+            content.style.paddingBottom = `${footerHeight}px`;
+        }
+
+        // Adjust on page load
+        adjustContentPadding();
+
+        // Adjust on window resize
+        window.addEventListener('resize', adjustContentPadding);
+    });
+</script>
 
 </body>
 </html>

@@ -11,8 +11,8 @@
     <!-- External stylesheet -->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.2" 
-    integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" 
+    <script src="https://unpkg.com/htmx.org@2.0.2"
+    integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
     crossorigin="anonymous"></script>
     <title>{% block title %}RxNotes{% endblock %}</title>
     <style>
@@ -45,14 +45,43 @@
     <footer class="footer">
         <p>
             Follow me on <a href="https://twitter.com/chistev12" target="_blank">@chistev12</a> |
-            Support my work with a donation: 
+            Support my work with a donation:
             <a href="https://buymeacoffee.com/chistev12" target="_blank">Buy Me a Coffee</a> |
             <a href="https://flutterwave.com/donate/nxlpmfy1jibs" target="_blank">Flutterwave</a>
         </p>
         <p>&copy; {{ current_year }} RxNotes. All rights reserved.</p>
     </footer>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'javascript/detail.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const copyLink = document.getElementById('copyLink');
+        const shareWhatsApp = document.getElementById('shareWhatsApp');
+
+        if (copyLink) {
+            copyLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const noteLink = window.location.href;
+
+                navigator.clipboard.writeText(noteLink).then(() => {
+                    alert('Note link copied to clipboard!');
+                }).catch(err => {
+                    alert('Failed to copy note link.');
+                });
+            });
+        }
+
+        if (shareWhatsApp) {
+            shareWhatsApp.addEventListener('click', function (e) {
+                e.preventDefault();
+                const noteLink = window.location.href;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(noteLink)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+    });
+</script>
+
+
 </body>
 </html>
